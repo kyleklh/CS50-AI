@@ -92,7 +92,7 @@ def shortest_path(source, target):
     If no possible path, returns None.
     """
 
-    start = Node(state=source, parent=None, action=None)
+    start = Node(state = source, parent = None, action = None)
     frontier = QueueFrontier()
     frontier.add(start)
 
@@ -101,7 +101,7 @@ def shortest_path(source, target):
     while True:
         if frontier.empty():
             return None
-
+        
         node = frontier.remove()
 
         if node.state == target:
@@ -113,16 +113,15 @@ def shortest_path(source, target):
 
             rt.reverse()
             return rt
-
         explored.add(node.state)
-
 
         neighbors = neighbors_for_person(node.state)
 
-        # add neighbours to frontier
+        #add neighbors to frontier
         for action, state in neighbors:
             if not frontier.contains_state(state) and state not in explored:
-                child = Node(state=state, parent=node, action=action)
+                child = Node(state = state, parent = node, action = action)
+                
                 if child.state == target:
                     rt = []
 
@@ -133,7 +132,6 @@ def shortest_path(source, target):
                     rt.reverse()
                     return rt
                 frontier.add(child)
-
 
 def person_id_for_name(name):
     """
